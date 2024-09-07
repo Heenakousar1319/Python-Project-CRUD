@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .form-container {
+            background: #86AB89;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .form-container form {
+            background-color: #C1D8C3;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 25px;
+            border: 1px solid #ddd;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #333;
+        }
+        .form-group input {
+            border: 2px solid #ddd;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group input:focus {
+            border-color:#6A9C89 ;
+            box-shadow: 0 0 8px rgba(255, 111, 97, 0.5);
+            outline: none;
+        }
+        .form-group input::placeholder {
+            color: #999;
+        }
+        .form-container form button {
+            width: 100%;
+            background: linear-gradient(to right, #ff6f61, #ffcc70);
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .form-container form button:hover {
+            background:#E8B86D ;
+            transform: scale(1.05);
+        }
+        .form-container form a {
+            text-decoration: none;
+            color: #ff6f61;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 15px;
+            transition: color 0.3s, transform 0.2s;
+        }
+        .form-container form a:hover {
+            color: #A28B55;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form method='POST'>
+            {% csrf_token %}
+            {% for field in form %}
+            <div class='form-group'>
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <button type='submit'>Register</button>
+        </form>
+    </div>
+</body>
+</html>

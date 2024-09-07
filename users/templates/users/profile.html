@@ -1,0 +1,118 @@
+<style>
+    body {
+        font-family: 'Poppins', Arial, sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #9face6);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .profile-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 400px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .profile-container:hover {
+        transform: translateY(-10px);
+    }
+
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border: 5px solid #74ebd5;
+        transition: border-color 0.3s;
+    }
+
+    .profile-photo:hover {
+        border-color: #ff7675;
+    }
+
+    h1 {
+        color: #2d3436;
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    h3 {
+        color: #6c5ce7;
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    p {
+        color: #636e72;
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
+    .upload-container {
+        margin-top: 25px;
+    }
+
+    .upload-container input[type="file"] {
+        display: none;
+    }
+
+    .upload-container label {
+        display: inline-block;
+        padding: 10px 30px;
+        background-color: #6c5ce7;
+        color: #fff;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;
+    }
+
+    .upload-container label:hover {
+        background-color: #74ebd5;
+    }
+</style>
+
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Profile Page</h1>
+        <!-- Profile Photo -->
+        <img src="default-profile.png" alt="Profile Photo" class="profile-photo" id="profile-photo">
+        <!-- User Details -->
+        <h3>{{ user.username }}</h3>
+        <p>Phone: {{ user.phone }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Organization: {{ user.organization }}</p>
+        <!-- File Upload for Profile Photo -->
+        <div class="upload-container">
+            <input type="file" id="file-upload" accept="image/*">
+            <label for="file-upload">Change Profile Photo</label>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle image preview
+        const fileUpload = document.getElementById('file-upload');
+        const profilePhoto = document.getElementById('profile-photo');
+
+        fileUpload.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profilePhoto.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
